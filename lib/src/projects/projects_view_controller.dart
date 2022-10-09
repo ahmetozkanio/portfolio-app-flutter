@@ -1,3 +1,21 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-class ProjectsViewController extends GetxController {}
+import 'model/project_model.dart';
+import 'service/projects_service.dart';
+
+class ProjectsViewController extends GetxController {
+  RxList<Projects> projectsList = <Projects>[].obs;
+
+  @override
+  void onInit() {
+    projectsFetchApi();
+    super.onInit();
+  }
+
+  void projectsFetchApi() async {
+    List<Projects>? items = await ProjectsService().getProjects();
+    if (items != null) {}
+    projectsList.value = items!;
+  }
+}
