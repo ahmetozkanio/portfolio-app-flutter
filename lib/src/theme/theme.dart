@@ -1,3 +1,4 @@
 import 'package:flutter/material.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/green_theme.dart';
 
-const Color primay = Colors.green;
+ThemeData _themeData = greenTheme;
