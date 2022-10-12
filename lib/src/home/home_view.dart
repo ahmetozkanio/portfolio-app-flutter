@@ -177,28 +177,10 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                       )),
-                  Expanded(
-                    child: Container(
-                        padding: EdgeInsets.all(24.0),
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'This item costs ',
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: '\$8.99',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    ' \$3.99 dasd asd sad asd asd asd asdasd asdas da das ads ',
-                              ),
-                            ],
-                          ),
-                        )),
-                  ),
+                  Container(
+                      padding: EdgeInsets.all(24.0),
+                      child: Text(
+                          "asfas fasf safk alsfk alskf laskf lask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasfl")),
                 ],
               ),
             ),
