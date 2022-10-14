@@ -1,18 +1,18 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/home/nav_bar/nav_bar_view.dart';
 
-class HomeView extends StatelessWidget {
+import '../user/user_view.dart';
+
+class HomeView extends GetView<HomeViewController> {
   HomeView({Key? key}) : super(key: key);
-  final PageController controller = PageController();
+
+  //PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
-    HomeViewController homeViewController = Get.put(HomeViewController());
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -29,100 +29,7 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 145,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/profile_photo.jpg'),
-                            fit: BoxFit.fitWidth),
-                        border: Border.all(
-                          width: 4.0,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(145, 145)),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 24.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Ahmet Ozkan',
-                          style: TextStyle(
-                            fontSize: 46,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4.0,
-                        ),
-                        Text(
-                          'Computer Engineer',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 22,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset("assets/svg/github.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'github')),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    "assets/svg/linkedin.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'linkedin')),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    "assets/svg/whatsapp.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'whatsapp')),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset("assets/svg/medium.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'medium')),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset("assets/svg/twitter.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'twitter')),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    "assets/svg/instagram.svg",
-                                    color: Theme.of(context).primaryColor,
-                                    semanticsLabel: 'instagram'))
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
+            UserView(),
             SizedBox(
               height: 16.0,
             ),
@@ -242,14 +149,14 @@ class HomeView extends StatelessWidget {
             ),
         */
 
-            homeNavBar(homeViewController, context),
+            homeNavBar(controller, context),
             SizedBox(
               height: 16.0,
             ),
             Obx(() => Container(
                   width: 450,
                   child: homeNavBarPageViewItems()
-                      .elementAt(homeViewController.selectedIndex.value),
+                      .elementAt(controller.selectedIndex.value),
                 ))
           ],
         ),

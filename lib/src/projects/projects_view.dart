@@ -1,19 +1,13 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart';
 
-import 'project_detail/project_detail_view.dart';
-
-class ProjectsView extends StatelessWidget {
+class ProjectsView extends GetView<ProjectsViewController> {
   ProjectsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ProjectsViewController projectsViewController =
-        Get.put(ProjectsViewController());
     return Obx(
       () => GridView.builder(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -23,13 +17,12 @@ class ProjectsView extends StatelessWidget {
             mainAxisSpacing: 10,
           ),
           shrinkWrap: true,
-          itemCount: projectsViewController.projectsList.length,
+          itemCount: controller.projectsList.length,
           itemBuilder: (BuildContext ctx, index) {
             return GestureDetector(
               onTap: () => Get.toNamed(
                 "/project/" +
-                    projectsViewController.projectsList[index].category
-                        .toString(),
+                    controller.projectsList[index].category.toString(),
               ),
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -43,7 +36,7 @@ class ProjectsView extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.contain,
                           //    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9yXdQZCLY5K6W0QQknq9eeuuo4iwwbBFGHtw4yTVFgacLDwFdWbvNimvq6ZrFxvYAbYM&usqp=CAU"
-                          image: NetworkImage(projectsViewController
+                          image: NetworkImage(controller
                               .projectsList[index].images![2].imageUrl
                               .toString()),
                         ),
@@ -101,8 +94,7 @@ class ProjectsView extends StatelessWidget {
                           left: 8,
                           bottom: 8,
                           child: Text(
-                            projectsViewController
-                                .projectsList[index].projectName
+                            controller.projectsList[index].projectName
                                 .toString(),
                             style: TextStyle(color: Colors.black),
                           ),
