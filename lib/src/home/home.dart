@@ -7,6 +7,7 @@ import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/projects/project_detail/project_detail_view.dart';
 import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/green_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/grey_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/purple_theme.dart';
 import 'package:web_site_ahmetozkanio/src/user/user_view_controller.dart';
 
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'ahmetozkanio',
-      theme: purpleTheme,
+      theme: greyTheme,
       initialRoute: '/',
       initialBinding: BindingsBuilder(
         (() {

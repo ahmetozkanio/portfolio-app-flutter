@@ -43,7 +43,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   google_nav_bar: ^5.0.6
   auto_size_text: ^3.0.0
-
+  sticky_headers: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:

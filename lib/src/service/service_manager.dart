@@ -1,5 +1,5 @@
 class ServiceManager {
-  final String _bases = "http://192.168.1.36:8000";
+  final String _bases = "https://ahmetozkanio.herokuapp.com";
 
   final String _lang = "/en";
 

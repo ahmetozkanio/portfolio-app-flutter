@@ -30,67 +30,6 @@ class HomeView extends GetView<HomeViewController> {
               ),
             ),
             UserView(),
-            SizedBox(
-              height: 16.0,
-            ),
-            Card(
-              child: Stack(
-                children: [
-                  Positioned(
-                      top: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Container(
-                        height: 24.0,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 227, 227, 227),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 13,
-                                height: 13,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 255, 85, 85),
-                                  borderRadius: BorderRadius.circular(7),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.0,
-                              ),
-                              Container(
-                                width: 13,
-                                height: 13,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 255, 186, 36),
-                                  borderRadius: BorderRadius.circular(7),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.0,
-                              ),
-                              Container(
-                                width: 13,
-                                height: 13,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 0, 202, 61),
-                                  borderRadius: BorderRadius.circular(7),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.all(24.0),
-                      child: Text(
-                          "asfas fasf safk alsfk alskf laskf lask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasfl")),
-                ],
-              ),
-            ),
 
             /*
             SizedBox(
@@ -154,7 +93,7 @@ class HomeView extends GetView<HomeViewController> {
               height: 16.0,
             ),
             Obx(() => Container(
-                  width: 450,
+                  width: 800,
                   child: homeNavBarPageViewItems()
                       .elementAt(controller.selectedIndex.value),
                 ))
