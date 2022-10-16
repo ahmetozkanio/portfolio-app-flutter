@@ -186,7 +186,7 @@ class UserView extends GetView<UserViewController> {
 
   Text userTitle() {
     return Text(
-      'Computer Engineer',
+      controller.user.value.title.toString(),
       textAlign: TextAlign.left,
       style: TextStyle(
         fontSize: 22,

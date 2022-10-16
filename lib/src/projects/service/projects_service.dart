@@ -9,7 +9,6 @@ class ProjectsService {
       var response = await Dio().get(
           'https://raw.githubusercontent.com/ahmetozkanio/custom-api-public/main/projects.json');
       if (response.statusCode == 200) {
-        print(response);
         Iterable iterable = json.decode(response.toString());
         List<Projects> projects = List<Projects>.from(
             iterable.map((model) => Projects.fromJson(model)));

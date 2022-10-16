@@ -3,7 +3,9 @@ class ServiceManager {
 
   final String _lang = "/en";
 
-  final String _user = "/user/?format=json";
+  final String _user = "/user";
 
-  String getUserUrl() => _bases + _lang + _user;
+  final String _format = "/?format=json";
+
+  String getUserUrl() => _bases + _lang + _user + _format;
 }
