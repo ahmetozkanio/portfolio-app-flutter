@@ -7,7 +7,7 @@ class UserViewController extends GetxController {
 
   @override
   void onInit() {
-    userFetchApi();
+    //  userFetchApi();
     super.onInit();
   }
 

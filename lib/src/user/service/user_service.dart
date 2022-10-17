@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:web_site_ahmetozkanio/src/service/service_manager.dart';
 import 'package:web_site_ahmetozkanio/src/user/model/user_model.dart';
 
 class UserService {
