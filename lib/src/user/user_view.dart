@@ -184,23 +184,25 @@ class UserView extends GetView<UserViewController> {
     );
   }
 
-  Text userTitle() {
-    return Text(
-      "Computer Engineer",
-      textAlign: TextAlign.left,
-      style: TextStyle(
-        fontSize: 22,
-      ),
-    );
+  Widget userTitle() {
+    return Obx(() => Text(
+          controller.user.value.title.toString(),
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontSize: 22,
+          ),
+        ));
   }
 
-  Text userName() {
-    return Text(
-      'Ahmet Ozkan',
-      style: TextStyle(
-        fontSize: 46,
-      ),
-    );
+  Widget userName() {
+    return Obx(() => Text(
+          controller.user.value.firsName.toString() +
+              ' ' +
+              controller.user.value.lastName.toString(),
+          style: TextStyle(
+            fontSize: 46,
+          ),
+        ));
   }
 
   Container userImage(BuildContext context) {

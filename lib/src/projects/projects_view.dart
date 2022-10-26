@@ -53,10 +53,10 @@ class ProjectsView extends GetView<ProjectsViewController> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.contain,
-                                //    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9yXdQZCLY5K6W0QQknq9eeuuo4iwwbBFGHtw4yTVFgacLDwFdWbvNimvq6ZrFxvYAbYM&usqp=CAU"
-                                image: NetworkImage(controller
-                                    .projectsList[index].images![2].imageUrl
-                                    .toString()),
+                                //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9yXdQZCLY5K6W0QQknq9eeuuo4iwwbBFGHtw4yTVFgacLDwFdWbvNimvq6ZrFxvYAbYM&usqp=CAU"
+                                image: NetworkImage(controller.baseUrl +
+                                    controller.projectsList[index].image
+                                        .toString()),
                               ),
                               // color: Colors.amber,
                               borderRadius: BorderRadius.circular(4)),
@@ -112,7 +112,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
                                 left: 8,
                                 bottom: 8,
                                 child: Text(
-                                  controller.projectsList[index].projectName
+                                  controller.projectsList[index].name
                                       .toString(),
                                   style: TextStyle(color: Colors.black),
                                 ),

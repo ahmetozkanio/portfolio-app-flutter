@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
+import 'package:web_site_ahmetozkanio/src/service/service_manager.dart';
 
 import 'model/project_model.dart';
 import 'service/projects_service.dart';
 
 class ProjectsViewController extends GetxController {
-  RxList<Projects> projectsList = <Projects>[].obs;
-  RxList<Projects> mobileList = <Projects>[].obs;
-  RxList<Projects> webList = <Projects>[].obs;
-  RxList<Projects> desktopList = <Projects>[].obs;
+  var baseUrl = ServiceManager().getBaseUrl();
 
-  List<String> projectCategory = ['Mobile', 'Web', 'Desktop'];
+  RxList<Project> projectsList = <Project>[].obs;
+  RxList<Project> mobileList = <Project>[].obs;
+  RxList<Project> webList = <Project>[].obs;
+  RxList<Project> desktopList = <Project>[].obs;
+
+  List<String> projectCategory = ['mobile', 'web', 'desktop'];
   @override
   void onInit() {
     projectsFetchApi();
@@ -17,7 +20,7 @@ class ProjectsViewController extends GetxController {
   }
 
   void projectsFetchApi() async {
-    List<Projects>? items = await ProjectsService().getProjects();
+    List<Project>? items = await ProjectsService().getProjects();
     if (items != null) {
       projectsList.value = items;
       for (var item in items) {

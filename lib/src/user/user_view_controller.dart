@@ -7,13 +7,13 @@ class UserViewController extends GetxController {
 
   @override
   void onInit() {
-    //  userFetchApi();
+    userFetchApi();
     super.onInit();
   }
 
   void userFetchApi() async {
     User? item = await UserService().getUser();
-    print(item);
+
     if (item != null) {
       user.value = item;
     }

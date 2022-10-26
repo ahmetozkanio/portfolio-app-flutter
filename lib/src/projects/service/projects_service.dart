@@ -1,17 +1,19 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:web_site_ahmetozkanio/src/projects/model/project_model.dart';
+import 'package:web_site_ahmetozkanio/src/service/service_manager.dart';
 
 class ProjectsService {
-  Future<List<Projects>?> getProjects() async {
+  Future<List<Project>?> getProjects() async {
     try {
-      var response = await Dio().get(
-          'https://raw.githubusercontent.com/ahmetozkanio/custom-api-public/main/projects.json');
+      var response =
+          await http.get(Uri.parse(ServiceManager().getProjectUrl()));
       if (response.statusCode == 200) {
-        Iterable iterable = json.decode(response.toString());
-        List<Projects> projects = List<Projects>.from(
-            iterable.map((model) => Projects.fromJson(model)));
+        Iterable iterable = json.decode(response.body);
+        List<Project> projects = List<Project>.from(
+            iterable.map((model) => Project.fromJson(model)));
         return projects;
       }
     } catch (e) {
