@@ -5,6 +5,7 @@ class Project {
   String? githubUrl;
   String? date;
   String? image;
+  String? slug;
   bool? avaliable;
   String? category;
   List<ProjectImages>? projectImages;
@@ -17,6 +18,7 @@ class Project {
       this.githubUrl,
       this.date,
       this.image,
+      this.slug,
       this.avaliable,
       this.category,
       this.projectImages,
@@ -29,6 +31,7 @@ class Project {
     githubUrl = json['github_url'];
     date = json['date'];
     image = json['image'];
+    slug = json['slug'];
     avaliable = json['avaliable'];
     category = json['category'];
     if (json['project_images'] != null) {
@@ -53,6 +56,7 @@ class Project {
     data['github_url'] = this.githubUrl;
     data['date'] = this.date;
     data['image'] = this.image;
+    data['slug'] = this.slug;
     data['avaliable'] = this.avaliable;
     data['category'] = this.category;
     if (this.projectImages != null) {
