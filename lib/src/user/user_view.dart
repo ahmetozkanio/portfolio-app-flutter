@@ -225,30 +225,36 @@ class UserView extends GetView<UserViewController> {
     return Container(
       width: 145,
       height: 145.0,
-      child: CarouselSlider.builder(
-        options: CarouselOptions(
-          autoPlay: true,
-          height: 145.0,
-          viewportFraction: 1.0,
-          enlargeCenterPage: false,
-        ),
-        itemCount: 15,
-        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            Container(
-          width: 145,
-          height: 145,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/profile_photo.jpg'),
-                fit: BoxFit.fitWidth),
-            border: Border.all(
-              width: 4.0,
-              color: Theme.of(context).primaryColor,
-            ),
-            borderRadius: BorderRadius.all(Radius.elliptical(145, 145)),
-          ),
-        ),
-      ),
+      child: Obx(() => controller.userLoading.value
+          ? CircularProgressIndicator()
+          : CarouselSlider.builder(
+              options: CarouselOptions(
+                autoPlay: true,
+                height: 145.0,
+                viewportFraction: 1.0,
+                enlargeCenterPage: false,
+              ),
+              itemCount: controller.user.value.userImages?.length ?? 0,
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) =>
+                      Container(
+                width: 145,
+                height: 145,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(controller.url +
+                              controller
+                                  .user.value.userImages?[itemIndex].image ??
+                          ''),
+                      fit: BoxFit.fitWidth),
+                  border: Border.all(
+                    width: 4.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.elliptical(145, 145)),
+                ),
+              ),
+            )),
     );
   }
 }

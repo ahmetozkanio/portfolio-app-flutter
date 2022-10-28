@@ -5,6 +5,7 @@ import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/home/nav_bar/nav_bar_view.dart';
 
 import '../user/user_view.dart';
+import 'footer/footer_view.dart';
 
 class HomeView extends GetView<HomeViewController> {
   HomeView({Key? key}) : super(key: key);
@@ -99,7 +100,8 @@ class HomeView extends GetView<HomeViewController> {
                   width: 800,
                   child: homeNavBarPageViewItems()
                       .elementAt(controller.selectedIndex.value),
-                ))
+                )),
+            FooterView()
           ],
         ),
       ),

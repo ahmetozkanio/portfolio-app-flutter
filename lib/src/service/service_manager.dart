@@ -5,9 +5,11 @@ class ServiceManager {
 
   final String _user = "/user";
   final String _project = "/projects";
+  final String _certificate = '/certificates';
 
   String getBaseUrl() => _base;
 
   String getUserUrl() => _base + _user + _format;
   String getProjectUrl() => _base + _project + _format;
+  String getCertificateUrl() => _base + _certificate + _format;
 }

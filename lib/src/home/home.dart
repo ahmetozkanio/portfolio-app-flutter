@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:web_site_ahmetozkanio/src/certificates/certificate_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/home/home_view.dart';
 import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/projects/project_detail/project_detail_view.dart';
@@ -24,6 +25,8 @@ class Home extends StatelessWidget {
           Get.lazyPut<HomeViewController>(() => HomeViewController());
           Get.lazyPut<UserViewController>(() => UserViewController());
           Get.lazyPut<ProjectsViewController>(() => ProjectsViewController());
+          Get.lazyPut<CertificatesViewController>(
+              () => CertificatesViewController());
         }),
       ),
       getPages: [

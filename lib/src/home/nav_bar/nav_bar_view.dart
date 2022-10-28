@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:web_site_ahmetozkanio/src/certificates/certificate_view.dart';
 
 import '../../projects/projects_view.dart';
 import '../home_view_controller.dart';
@@ -8,9 +9,7 @@ import '../home_view_controller.dart';
 List<Widget> homeNavBarPageViewItems() {
   return [
     ProjectsView(),
-    Container(
-      color: Colors.blue,
-    ),
+    CertificateView(),
     Text(
       'Text3',
     ),
@@ -63,7 +62,7 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
           ),
           GButton(
             icon: Icons.heart_broken,
-            text: 'cv',
+            text: 'certificates',
           ),
           GButton(
             icon: Icons.receipt_long_outlined,
