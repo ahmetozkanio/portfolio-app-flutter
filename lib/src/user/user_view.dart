@@ -1,6 +1,12 @@
+import 'dart:ui';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../service/launch_url.dart';
 import 'model/user_model.dart';
 import 'user_view_controller.dart';
 
@@ -136,57 +142,67 @@ class UserView extends GetView<UserViewController> {
               ),
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-                child: Text(
-                    "asfas fasf safk alsfk alskf laskf lask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasflask lasfklasfl")),
+              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+              child: Obx(
+                () => Html(data: controller.user.value.description ?? ''),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Row userAccounts(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/github.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'github')),
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/linkedin.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'linkedin')),
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/whatsapp.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'whatsapp')),
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/medium.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'medium')),
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/twitter.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'twitter')),
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/svg/instagram.svg",
-                color: Theme.of(context).primaryColor,
-                semanticsLabel: 'instagram'))
-      ],
-    );
+  Widget userAccounts(BuildContext context) {
+    return Obx(() => controller.userLoading.value
+        ? CircularProgressIndicator()
+        : SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var item in controller.user.value.userAccounts!)
+                  IconButton(
+                    onPressed: () => customLaunchUrl(item.accountUrl ?? ''),
+                    icon: SvgPicture.network(
+                        controller.url + item.accountImage!,
+                        color: Theme.of(context).primaryColor,
+                        semanticsLabel: '${item.accountName}'),
+                  ),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: SvgPicture.asset("assets/svg/linkedin.svg",
+                //         color: Theme.of(context).primaryColor,
+                //         semanticsLabel: 'linkedin')),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: SvgPicture.asset("assets/svg/whatsapp.svg",
+                //         color: Theme.of(context).primaryColor,
+                //         semanticsLabel: 'whatsapp')),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: SvgPicture.asset("assets/svg/medium.svg",
+                //         color: Theme.of(context).primaryColor,
+                //         semanticsLabel: 'medium')),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: SvgPicture.asset("assets/svg/twitter.svg",
+                //         color: Theme.of(context).primaryColor,
+                //         semanticsLabel: 'twitter')),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: SvgPicture.asset("assets/svg/instagram.svg",
+                //         color: Theme.of(context).primaryColor,
+                //         semanticsLabel: 'instagram'))
+              ],
+            ),
+          ));
   }
 
   Widget userTitle() {
     return Obx(() => Text(
-          controller.user.value.title.toString(),
+          controller.user.value.title ?? '',
           textAlign: TextAlign.left,
           style: TextStyle(
             fontSize: 22,
@@ -195,29 +211,43 @@ class UserView extends GetView<UserViewController> {
   }
 
   Widget userName() {
-    return Obx(() => Text(
-          controller.user.value.firsName.toString() +
-              ' ' +
-              controller.user.value.lastName.toString(),
-          style: TextStyle(
-            fontSize: 46,
-          ),
-        ));
+    return Obx(
+      () => Text(
+        '${controller.user.value.firsName ?? ''} ${controller.user.value.lastName ?? ""}',
+        style: TextStyle(
+          fontSize: 46,
+        ),
+      ),
+    );
   }
 
-  Container userImage(BuildContext context) {
+  Widget userImage(BuildContext context) {
     return Container(
       width: 145,
-      height: 145,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/profile_photo.jpg'),
-            fit: BoxFit.fitWidth),
-        border: Border.all(
-          width: 4.0,
-          color: Theme.of(context).primaryColor,
+      height: 145.0,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          autoPlay: true,
+          height: 145.0,
+          viewportFraction: 1.0,
+          enlargeCenterPage: false,
         ),
-        borderRadius: BorderRadius.all(Radius.elliptical(145, 145)),
+        itemCount: 15,
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+            Container(
+          width: 145,
+          height: 145,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/profile_photo.jpg'),
+                fit: BoxFit.fitWidth),
+            border: Border.all(
+              width: 4.0,
+              color: Theme.of(context).primaryColor,
+            ),
+            borderRadius: BorderRadius.all(Radius.elliptical(145, 145)),
+          ),
+        ),
       ),
     );
   }

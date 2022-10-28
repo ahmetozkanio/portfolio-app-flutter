@@ -37,6 +37,7 @@ dependencies:
 
   get: ^4.6.5
   http: ^0.13.5
+  url_launcher: ^6.1.6
 
   flutter_svg: ^1.1.5
   persistent_bottom_nav_bar: ^5.0.2
@@ -44,7 +45,9 @@ dependencies:
   auto_size_text: ^3.0.0
   sticky_headers: ^0.3.0+2
   carousel_slider: ^4.1.1
+  swipe_image_gallery: ^0.8.0
 
+  flutter_html: ^3.0.0-alpha.6
   blur: ^3.1.0
 
 dev_dependencies:

@@ -29,7 +29,10 @@ class HomeView extends GetView<HomeViewController> {
                 ],
               ),
             ),
-            UserView(),
+            Container(
+              width: 800,
+              child: UserView(),
+            ),
 
             /*
             SizedBox(

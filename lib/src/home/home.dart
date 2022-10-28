@@ -37,9 +37,13 @@ class Home extends StatelessWidget {
         ),
         GetPage(
           name: '/project/:slug',
-
           page: () => ProjectDetailView(),
-          // binding: () => Get.lazyPut<ProjectDetailViewController>(() => ProjectDetailViewController())
+          transition: Transition.zoom,
+          binding: BindingsBuilder(() {
+            Get.lazyPut<ProjectDetailViewController>(
+                () => ProjectDetailViewController());
+            // Get.put<Service>(()=> Api());
+          }),
         ),
       ],
       debugShowCheckedModeBanner: false,

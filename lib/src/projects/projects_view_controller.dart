@@ -8,9 +8,9 @@ class ProjectsViewController extends GetxController {
   var baseUrl = ServiceManager().getBaseUrl();
 
   RxList<Project> projectsList = <Project>[].obs;
-  // RxList<Project> mobileList = <Project>[].obs;
-  // RxList<Project> webList = <Project>[].obs;
-  // RxList<Project> desktopList = <Project>[].obs;
+  RxList<Project> mobileList = <Project>[].obs;
+  RxList<Project> webList = <Project>[].obs;
+  RxList<Project> desktopList = <Project>[].obs;
 
   List<String> projectCategory = ['mobile', 'web', 'desktop'];
   @override
@@ -23,18 +23,18 @@ class ProjectsViewController extends GetxController {
     List<Project>? items = await ProjectsService().getProjects();
     if (items != null) {
       projectsList.value = items;
-      // for (var item in items) {
-      //   if (item.category.toString().toLowerCase() ==
-      //       projectCategory[0].toLowerCase()) {
-      //     mobileList.add(item);
-      //   } else if (item.category.toString().toLowerCase() ==
-      //       projectCategory[1].toLowerCase()) {
-      //     webList.add(item);
-      //   } else if (item.category.toString().toLowerCase() ==
-      //       projectCategory[2].toLowerCase()) {
-      //     desktopList.add(item);
-      //   }
-      // }
+      for (var item in items) {
+        if (item.category.toString().toLowerCase() ==
+            projectCategory[0].toLowerCase()) {
+          mobileList.add(item);
+        } else if (item.category.toString().toLowerCase() ==
+            projectCategory[1].toLowerCase()) {
+          webList.add(item);
+        } else if (item.category.toString().toLowerCase() ==
+            projectCategory[2].toLowerCase()) {
+          desktopList.add(item);
+        }
+      }
     }
   }
 }
