@@ -29,7 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_web_plugins:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,13 +41,17 @@ dependencies:
   url_launcher: ^6.1.6
 
   flutter_svg: ^1.1.5
-  persistent_bottom_nav_bar: ^5.0.2
+
   google_nav_bar: ^5.0.6
   auto_size_text: ^3.0.0
-  sticky_headers: ^0.3.0+2
+ 
   carousel_slider: ^4.1.1
-  swipe_image_gallery: ^0.8.0
 
+  delayed_display: ^2.0.0
+  photo_view: ^0.14.0
+
+  pdf: ^3.8.4
+  syncfusion_flutter_pdfviewer: ^20.3.52
   flutter_html: ^3.0.0-alpha.6
   blur: ^3.1.0
 

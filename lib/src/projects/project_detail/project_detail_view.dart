@@ -6,6 +6,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:http/retry.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 import 'package:web_site_ahmetozkanio/src/projects/model/project_model.dart';
 import 'package:web_site_ahmetozkanio/src/projects/project_detail/project_detail_view_controller.dart';
@@ -126,30 +128,57 @@ class ProjectDetailView extends GetView<ProjectDetailViewController> {
     );
   }
 
-  ScrollConfiguration images(BuildContext context, BoxConstraints constraints) {
-    return ScrollConfiguration(
-      behavior: ScrollConfiguration.of(context).copyWith(
-        dragDevices: {
-          PointerDeviceKind.touch,
-          PointerDeviceKind.mouse,
+  Widget images(BuildContext context, BoxConstraints constraints) {
+    return Container(
+      width: 250,
+      height: 250,
+      child: PhotoViewGallery.builder(
+        scrollPhysics: const BouncingScrollPhysics(),
+        builder: (BuildContext context, int index) {
+          return PhotoViewGalleryPageOptions(
+            imageProvider: NetworkImage(
+                controller.project.projectImages![index].projectImages!),
+            initialScale: PhotoViewComputedScale.contained * 0.8,
+            heroAttributes: PhotoViewHeroAttributes(
+                tag: controller.project.projectImages![index].projectImages!),
+          );
         },
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            for (var item in controller.project.projectImages!)
-              Image.network(
-                controller.url + item.projectImages!,
-                width: constraints.maxWidth > 700
-                    ? MediaQuery.of(context).size.width / 7
-                    : constraints.maxWidth > 500
-                        ? MediaQuery.of(context).size.width / 5
-                        : MediaQuery.of(context).size.width / 3,
-              ),
-          ],
+        itemCount: controller.project.projectImages!.length,
+        loadingBuilder: (context, event) => Center(
+          child: Container(
+            width: 20.0,
+            height: 20.0,
+            child: CircularProgressIndicator(
+              value: event == null
+                  ? 0
+                  : event.cumulativeBytesLoaded /
+                      event.expectedTotalBytes!.toInt(),
+            ),
+          ),
         ),
+        // backgroundDecoration: widget.backgroundDecoration,
+        // pageController: widget.pageController,
+        // onPageChanged: onPageChanged,
       ),
     );
+
+    // ScrollConfiguration(
+    //   behavior: ScrollConfiguration.of(context).copyWith(
+    //     dragDevices: {
+    //       PointerDeviceKind.touch,
+    //       PointerDeviceKind.mouse,
+    //     },
+    //   ),
+    //   child: Column(
+    //     children: [
+    //       // for (var item in controller.project.projectImages!)
+    //       //   PhotoView(
+    //       //     imageProvider: NetworkImage(
+    //       //       controller.url + item.projectImages!,
+    //       //     ),
+    //       //   )
+    //     ],
+    //   ),
+    // );
   }
 }

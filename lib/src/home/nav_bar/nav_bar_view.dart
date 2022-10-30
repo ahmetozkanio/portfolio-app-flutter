@@ -2,21 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:web_site_ahmetozkanio/src/certificates/certificate_view.dart';
+import 'package:web_site_ahmetozkanio/src/cv/cv_view.dart';
 
+import '../../education/education_view.dart';
 import '../../projects/projects_view.dart';
 import '../home_view_controller.dart';
 
 List<Widget> homeNavBarPageViewItems() {
-  return [
-    ProjectsView(),
-    CertificateView(),
-    Text(
-      'Text3',
-    ),
-    Text(
-      'Text4',
-    )
-  ];
+  return [ProjectsView(), CertificateView(), CvView(), EducationView()];
 }
 
 Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
@@ -66,11 +59,11 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
           ),
           GButton(
             icon: Icons.receipt_long_outlined,
-            text: 'about',
+            text: 'cv',
           ),
           GButton(
             icon: Icons.access_alarm,
-            text: 'Kayıtlar',
+            text: 'education',
           ),
         ]),
   );

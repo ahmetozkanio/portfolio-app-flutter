@@ -1,5 +1,6 @@
 class ServiceManager {
-  final String _base = "http://192.168.1.34:8000";
+  final String _base =
+      'https://ahmetozkanio.herokuapp.com'; //"http://192.168.1.34:8000";
   final String _format = "/?format=json";
   final String _lang = "/en";
 
