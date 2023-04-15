@@ -9,7 +9,7 @@ import '../../projects/projects_view.dart';
 import '../home_view_controller.dart';
 
 List<Widget> homeNavBarPageViewItems() {
-  return [ProjectsView(), CertificateView(), CvView(), EducationView()];
+  return [ProjectsView(), ProjectsView(), EducationView()];
 }
 
 Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
@@ -57,10 +57,7 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
             icon: Icons.heart_broken,
             text: 'certificates',
           ),
-          GButton(
-            icon: Icons.receipt_long_outlined,
-            text: 'cv',
-          ),
+      
           GButton(
             icon: Icons.access_alarm,
             text: 'education',

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/home/nav_bar/nav_bar_view.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/dark_theme.dart';
 
 import '../user/user_view.dart';
 import 'footer/footer_view.dart';
@@ -33,7 +34,9 @@ class HomeView extends GetView<HomeViewController> {
                       delay: Duration(seconds: 1),
                       child: Text("ahmetozkanio"),
                     ),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.dark_mode)),
+                    IconButton(onPressed: () {
+                      Get.changeThemeMode(ThemeMode.light,);
+                      }, icon: Icon(Icons.dark_mode,),),
                   ],
                 ),
               ),

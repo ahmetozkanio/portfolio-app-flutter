@@ -1,9 +1,16 @@
 import 'package:blur/blur.dart';
+import 'package:delayed_display/delayed_display.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:web_site_ahmetozkanio/src/projects/model/project_model.dart';
 
 import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart';
+import 'package:web_site_ahmetozkanio/src/utils/hero_dialog_route.dart';
+import 'package:web_site_ahmetozkanio/src/utils/launch_url.dart';
+
+import '../utils/custom_rect_tween.dart';
 
 class ProjectsView extends GetView<ProjectsViewController> {
   ProjectsView({Key? key}) : super(key: key);
@@ -14,130 +21,215 @@ class ProjectsView extends GetView<ProjectsViewController> {
       builder: (BuildContext context, BoxConstraints constraints) {
         return Obx(
           () => GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 1.4,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              crossAxisCount: constraints.maxWidth > 600 ? 3 : 2,
-            ),
-            itemCount: controller.projectsList.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (BuildContext ctx, index) {
-              return GestureDetector(
-                onTap: () => Get.toNamed(
-                    "/project/${controller.projectsList[index].slug}",
-                    arguments: controller.projectsList[index]),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Container(
-                      // width: 250,
-                      // height: 150,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fitWidth,
-                            //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9yXdQZCLY5K6W0QQknq9eeuuo4iwwbBFGHtw4yTVFgacLDwFdWbvNimvq6ZrFxvYAbYM&usqp=CAU"
-                            image: NetworkImage(controller.baseUrl +
-                                controller.projectsList[index].image
-                                    .toString()),
-                          ),
-                          // color: Colors.amber,
-                          borderRadius: BorderRadius.circular(4)),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            left: 0,
-                            child: Blur(
-                                blur: 9,
-                                // blurColor:
-                                //     Theme.of(context).primaryColor,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color.fromARGB(54, 219, 219, 219),
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(8),
-                                        bottomRight: Radius.circular(8)),
-                                  ),
-                                  height: 32,
-                                )),
-                          ),
-                          Positioned(
-                            top: 6.0,
-                            right: 6.0,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  for (var item in controller
-                                      .projectsList[index].projectTools!)
-                                    Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Image.asset(
-                                        "assets/logo/${item.toolName}.png",
-                                        width: 16.0,
-                                        height: 16.0,
-                                      ),
-                                    ),
-
-                                  // Image.asset(
-                                  //   "assets/logo/swift.png",
-                                  //   width: 18.0,
-                                  //   height: 18.0,
-                                  // ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: SvgPicture.asset(
-                                "assets/svg/github.svg",
-                                color: Colors.red,
-                                semanticsLabel: 'github',
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 8,
-                            bottom: 8,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  controller.projectsList[index].name
-                                      .toString(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
-              );
-            },
-          ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 1.4,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+                crossAxisCount: constraints.maxWidth > 600 ? 3 : 2,
+              ),
+              itemCount: controller.projects.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext ctx, index) {
+                return projectCard(index, context);
+              }),
         );
       },
     );
   }
+
+  GestureDetector projectCard(int index, BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(
+        HeroDialogRoute(builder: (context) {
+          return _ProjectPopupCard(
+              project: controller.projects[index], heroIndex: index);
+        }),
+      ),
+      child: Hero(
+        tag: index,
+        createRectTween: (begin, end) =>
+            CustomRectTween(begin: begin!, end: end!),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Container(
+            // width: 250,
+            // height: 150,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: NetworkImage(
+                      controller.projects[index].thumbnail.toString()),
+                ),
+                // color: Colors.amber,
+                borderRadius: BorderRadius.circular(4)),
+            child: Stack(
+              children: [
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: Blur(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
+                      blur: 9,
+                      blurColor: Theme.of(context).primaryColor,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                        ),
+                        height: 38.0,
+                      )),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Card(
+                    elevation: 24.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0),
+                    ),
+                    child: IconButton(
+                      hoverColor: Theme.of(context).secondaryHeaderColor,
+                      splashRadius: 20.0,
+                      onPressed: () => customLaunchUrl(
+                          controller.projects[index].github ?? ""),
+                      icon: SvgPicture.asset(
+                        width: 18.0,
+                        height: 18.0,
+                        "assets/svg/github.svg",
+                        color: Theme.of(context).iconTheme.color,
+                        semanticsLabel: 'github',
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  bottom: 8,
+                  right: 8,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        controller.projects[index].category.toString(),
+                        textAlign: TextAlign.center,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            width: 16.0,
+                            height: 16.0,
+                            "assets/logo/flutter.png",
+                          ),
+                         
+                          Image.asset(
+                            width: 16.0,
+                            height: 16.0,
+                            "assets/logo/swift.png",
+                          ),
+                          Image.asset(
+                            width: 16.0,
+                            height: 16.0,
+                            "assets/logo/django.png",
+                          ),
+                          Image.asset(
+                            width: 16.0,
+                            height: 16.0,
+                            "assets/logo/figma.png",
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        // Card(
+        //   color: Theme.of(context).secondaryHeaderColor,
+        //   child: Container(
+        //     decoration: BoxDecoration(
+        //       image: DecorationImage(
+        //         image: NetworkImage(
+        //           controller.projects[index].thumbnail ?? "",
+        //         ),
+        //         fit: BoxFit.contain,
+        //       ),
+        //     ),
+        //     child: Text(""),
+        //   ),
+        // ),
+      ),
+    );
+  }
 }
 
-
+class _ProjectPopupCard extends StatelessWidget {
+  const _ProjectPopupCard(
+      {Key? key, required this.project, required this.heroIndex})
+      : super(key: key);
+  final Projects project;
+  final int heroIndex;
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.all(32.0),
+        child: Hero(
+          tag: heroIndex,
+          createRectTween: (begin, end) {
+            return CustomRectTween(begin: begin!, end: end!);
+          },
+          child: Material(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32)),
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(32),
+                        topRight: Radius.circular(32),
+                      ),
+                    ),
+                    expandedHeight: 160.0,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              project.thumbnail ?? "",
+                            ),
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child:
+                        Image.network('https://ghchart.rshah.org/ahmetozkanio'),
+                  ),
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
 // LayoutBuilder(
 //       builder: (BuildContext context, BoxConstraints constraints) {
-//         return 
-        
-        
-        
+//         return
+
 //         ListView.builder(
 //             physics: NeverScrollableScrollPhysics(),
 //             itemCount: 3,

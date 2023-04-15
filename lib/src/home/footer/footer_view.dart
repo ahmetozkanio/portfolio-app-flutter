@@ -5,8 +5,14 @@ class FooterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 165.0,
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 32.0,
+        top: 128.0,
+      ),
+      child: Text(
+        "© ahmetozkanio. 2022 All rigths reserved",
+      ),
     );
   }
 }
