@@ -53,6 +53,7 @@ dependencies:
 
   code_text_field: ^1.1.0
   flutter_highlight: ^0.7.0
+  flutter_colorpicker: ^1.0.3
   
   pdf: ^3.8.4
   syncfusion_flutter_pdfviewer: ^20.3.52

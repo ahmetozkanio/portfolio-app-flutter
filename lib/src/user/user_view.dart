@@ -177,7 +177,7 @@ class UserView extends GetView<UserViewController> {
           userAccountButton(context, "https:www.linkedin.com/in/", "linkedin"),
           userAccountButton(context, "https:www.github.com/", "github"),
           userAccountButton(context, "https:www.medium.com/@", "medium"),
-          userAccountButton(context, "https:www.twitter.com/", "twitter"),
+          userAccountButton(context, "https:www.twitter.com/@", "twitter"),
           userAccountButton(context, "https:www.instagram.com/", "instagram"),
         ],
       ),
@@ -187,6 +187,7 @@ class UserView extends GetView<UserViewController> {
   IconButton userAccountButton(
       BuildContext context, String url, String account) {
     return IconButton(
+        splashRadius: 18.0,
         onPressed: () {
           customLaunchUrl("${url}${controller.user.value.username}");
         },
