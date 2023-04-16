@@ -37,11 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   get: ^4.6.5
-
+  get_storage: ^2.1.1
+  
   http: ^0.13.5
   url_launcher: ^6.1.6
   shared_preferences: ^2.1.0
-  
+
   flutter_svg: ^1.1.5
 
   google_nav_bar: ^5.0.6

@@ -9,16 +9,19 @@ import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/green_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/grey_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/purple_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/yellow_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/theme.dart';
 import 'package:web_site_ahmetozkanio/src/user/user_view_controller.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemesController _themesController = Get.put(ThemesController());
     return GetMaterialApp(
       title: 'ahmetozkanio',
+      initialRoute: '/',
       theme: greyTheme,
       darkTheme: ThemeData.dark(),
-      initialRoute: '/',
       initialBinding: BindingsBuilder(
         (() {
           Get.lazyPut<HomeViewController>(() => HomeViewController());
