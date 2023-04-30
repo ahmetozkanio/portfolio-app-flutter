@@ -193,10 +193,10 @@ class UserView extends GetView<UserViewController> {
 
   Widget userTitle() {
     return Obx(() => Text(
-          controller.user.value.username ?? '',
+          controller.user.value.title ?? '',
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 22,
+            fontSize: 17,
           ),
         ));
   }
@@ -208,10 +208,10 @@ class UserView extends GetView<UserViewController> {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: AssetImage("assets/images/profile_photo.jpg"),
-            fit: BoxFit.fitWidth),
+            fit: BoxFit.fitWidth,),
         border: Border.all(
           width: 4.0,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).primaryColorLight,
         ),
         borderRadius: BorderRadius.all(Radius.elliptical(145, 145)),
       ),
@@ -223,7 +223,7 @@ class UserView extends GetView<UserViewController> {
       () => Text(
         '${controller.user.value.firstName ?? ''} ${controller.user.value.lastName ?? ""}',
         style: TextStyle(
-          fontSize: 46,
+          fontSize: 32,
         ),
       ),
     );

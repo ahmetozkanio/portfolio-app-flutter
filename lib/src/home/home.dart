@@ -13,6 +13,8 @@ import 'package:web_site_ahmetozkanio/src/theme/panachefile/yellow_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/theme.dart';
 import 'package:web_site_ahmetozkanio/src/user/user_view_controller.dart';
 
+import '../theme/panachefile/dark_theme.dart';
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class Home extends StatelessWidget {
       title: 'ahmetozkanio',
       initialRoute: '/',
       theme: greyTheme,
-      darkTheme: ThemeData.dark(),
+      darkTheme: darkTheme,
       initialBinding: BindingsBuilder(
         (() {
           Get.lazyPut<HomeViewController>(() => HomeViewController());

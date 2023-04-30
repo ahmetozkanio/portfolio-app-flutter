@@ -6,6 +6,7 @@ import 'package:web_site_ahmetozkanio/src/theme/panachefile/blue_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/bluegray_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/brown_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/cyan_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/dark_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/deeporange_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/deeppurple_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/green_theme.dart';
@@ -81,7 +82,7 @@ class ThemesController extends GetxController with ThemeCacheManager {
   static ThemeData themeSelect(EnumThemeData? enumThemeData) {
     switch (enumThemeData) {
       case EnumThemeData.darkTheme:
-        return ThemeData.dark();
+        return darkTheme;
       case EnumThemeData.redTheme:
         return redTheme;
       case EnumThemeData.pinkTheme:
