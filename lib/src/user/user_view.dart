@@ -1,11 +1,9 @@
-import 'package:code_text_field/code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:web_site_ahmetozkanio/src/constants/constant.dart';
 import '../utils/launch_url.dart';
 import 'user_view_controller.dart';
-import 'package:highlight/languages/dart.dart';
 
 class UserView extends GetView<UserViewController> {
   UserView({Key? key}) : super(key: key);
@@ -149,14 +147,11 @@ class UserView extends GetView<UserViewController> {
               child: Obx(
                 () => Column(
                   children: [
-                    CodeField(
-                      controller: CodeController(
-                        text: controller.user.value.description,
-                        language: dart,
+                    
+                        Text(controller.user.value.description.toString())
                        
-                      ),
-                      textStyle: TextStyle(fontFamily: 'SourceCode'),
-                    ),
+                      
+                    
                   ],
                 ),
               ),
