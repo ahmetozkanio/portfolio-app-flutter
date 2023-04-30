@@ -7,10 +7,10 @@ class Constant{
 
   // Services
   final String _base =
-      'https://raw.githubusercontent.com/ahmetozkanio/custom-api-public/main';
+      'https://raw.githubusercontent.com/ahmetozkanio/custom-api-public/main/my-site';
 
   final String _project = "/projects.json";
-  final String _user = "/my-site/user.json";
+  final String _user = "/user.json";
 
   String getBaseUrl() => _base;
 
