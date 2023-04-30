@@ -2,12 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blur/blur.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:web_site_ahmetozkanio/src/projects/detail/project_detail_view.dart';
 // import 'package:sticky_headers/sticky_headers.dart';
 import 'package:web_site_ahmetozkanio/src/projects/model/project_model.dart';
 
 import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart';
+import 'package:web_site_ahmetozkanio/src/projects/service/projects_service.dart';
 import 'package:web_site_ahmetozkanio/src/utils/hero_dialog_route.dart';
 import 'package:web_site_ahmetozkanio/src/utils/launch_url.dart';
 
@@ -86,7 +89,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         HeroDialogRoute(builder: (context) {
-          return _ProjectPopupCard(
+          return ProjectDetailView(
               project: controller.projects[index], heroIndex: index);
         }),
       ),
@@ -121,7 +124,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
                           bottomLeft: Radius.circular(8),
                           bottomRight: Radius.circular(8)),
                       blur: 9,
-                      blurColor: Theme.of(context).primaryColor,
+                      blurColor: Get.isDarkMode ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColor ,
                       child: SizedBox(height: 38.0,),
                  
                       ),
@@ -155,7 +158,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
                 Positioned(
                   left: 8.0,
                   bottom: 8.0,
-                  right: 36.0,
+                  right: 52.0,
                   child:
                       AutoSizeText(
                         controller.projects[index].projectName.toString(),
@@ -205,58 +208,3 @@ class ProjectsView extends GetView<ProjectsViewController> {
 
 }
 
-
-class _ProjectPopupCard extends StatelessWidget {
-  const _ProjectPopupCard(
-      {Key? key, required this.project, required this.heroIndex})
-      : super(key: key);
-  final Projects project;
-  final int heroIndex;
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.all(32.0),
-        child: Hero(
-          tag: heroIndex,
-          createRectTween: (begin, end) {
-            return CustomRectTween(begin: begin!, end: end!);
-          },
-          child: Material(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
-              child: CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(32),
-                        topRight: Radius.circular(32),
-                      ),
-                    ),
-                    expandedHeight: 160.0,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              project.thumbnail ?? "",
-                            ),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child:
-                        Image.network('https://ghchart.rshah.org/ahmetozkanio'),
-                  ),
-                ],
-              )),
-        ),
-      ),
-    );
-  }
-}
-      

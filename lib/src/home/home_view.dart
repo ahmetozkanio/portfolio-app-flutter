@@ -10,6 +10,7 @@ import 'package:web_site_ahmetozkanio/src/theme/theme.dart';
 import 'package:web_site_ahmetozkanio/src/utils/custom_rect_tween.dart';
 
 import '../user/user_view.dart';
+import '../utils/launch_url.dart';
 import 'footer/footer_view.dart';
 
 class HomeView extends GetView<HomeViewController> {
@@ -37,7 +38,7 @@ class HomeView extends GetView<HomeViewController> {
                   children: [
                     DelayedDisplay(
                       delay: Duration(seconds: 1),
-                      child: Text("ahmetozkanio"),
+                      child: InkWell(onTap: () {customLaunchUrl("mailto:ahmetozkanio@yahoo.com");}, child: Text("ahmetozkanio",style: TextStyle(fontWeight: FontWeight.w500),)),
                     ),
                     Row(
                       children: [

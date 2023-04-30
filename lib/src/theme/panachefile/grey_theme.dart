@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_site_ahmetozkanio/src/theme/text_theme.dart';
 
 final ThemeData greyTheme = ThemeData(
   primarySwatch: Colors.grey,
@@ -66,6 +67,7 @@ final ThemeData greyTheme = ThemeData(
       brightness: Brightness.light,
     ),
   ),
+  textTheme: customTextTheme,
   // textTheme: TextTheme(
   //   display4: TextStyle(
   //   color: Color( 0x8a000000 ),

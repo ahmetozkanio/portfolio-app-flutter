@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../text_theme.dart';
+
 final ThemeData darkTheme = ThemeData(
   primarySwatch: Colors.blue,
   brightness: Brightness.dark,
@@ -66,6 +68,7 @@ final ThemeData darkTheme = ThemeData(
       brightness: Brightness.dark,
     ),
   ),
+  textTheme: customTextTheme,
   // textTheme: TextTheme(
   //   display4: TextStyle(
   //   color: Color( 0xb3ffffff ),

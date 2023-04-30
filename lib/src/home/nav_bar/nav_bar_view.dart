@@ -9,7 +9,7 @@ import '../../projects/projects_view.dart';
 import '../home_view_controller.dart';
 
 List<Widget> homeNavBarPageViewItems() {
-  return [ProjectsView(), ProjectsView(), EducationView()];
+  return [ProjectsView(),EducationView()];
 }
 
 Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
@@ -29,7 +29,7 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
         haptic: true, // haptic feedback
         tabBorderRadius: 8,
         tabActiveBorder: Border.all(
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).primaryColor,
             width: 1), // tab button border
         // tabBorder: Border.all(
         //     color: Colors.grey, width: 1), // tab button border
@@ -39,9 +39,9 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
         curve: Curves.easeInOutQuad, // tab animation curves
         duration: Duration(milliseconds: 300), // tab animation duration
         gap: 8, // the tab button gap between icon and text
-        color: Colors.grey[400], // unselected icon color
+         // unselected icon color
         activeColor:
-            Theme.of(context).primaryColor, // selected icon and text color
+            Theme.of(context).primaryColor  , // selected icon and text color
         iconSize: 24, // tab button icon size
         // tabBackgroundColor: Colors.purple
         //     .withOpacity(0.1), // selected tab background color
@@ -50,18 +50,15 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
         tabs: [
           GButton(
             haptic: true,
-            icon: Icons.show_chart_outlined,
+            icon: Icons.code,
             text: 'projects',
           ),
-          GButton(
-            icon: Icons.heart_broken,
-            text: 'certificates',
-          ),
-      
-          GButton(
-            icon: Icons.access_alarm,
+        GButton(
+            haptic: true,
+            icon: Icons.school_outlined,
             text: 'education',
           ),
+          
         ]),
   );
 }

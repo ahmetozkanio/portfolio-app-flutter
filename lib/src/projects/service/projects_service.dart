@@ -21,4 +21,9 @@ class ProjectsService {
     }
     return null;
   }
+  Future<String?> getTextData(String url) async {
+
+    var response = await http.get(Uri.parse(url));
+    return response.body;
+  }
 }

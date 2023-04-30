@@ -7,40 +7,42 @@ class EducationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 500,
-        child: ListView.builder(
-          itemCount: 15,
+        width: 358,
+        child: ListView(
+         
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                isThreeLine: true,
-                title: Row(
-                  children: [
-                    SelectableText('COMPUTER ENGINEERING'),
-                  ],
-                ),
-                contentPadding: EdgeInsets.all(16),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SelectableText('ISKENDERUN TEKNIK UNIVERSITESI'),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    SelectableText('2018-2022'),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    SelectableText('3.2 / 4'),
-                  ],
-                ),
-                trailing:
-                    Image.network('http://iste.edu.tr/files/iste_arma.png'),
-              ),
-            );
-          },
+      children: [
+Card(
+  child:   ListTile(
+    isThreeLine: true,
+    title: Row(
+      children: [
+        Text('COMPUTER ENGINEERING'),
+      ],
+    ),
+    contentPadding: EdgeInsets.all(16),
+    
+    subtitle: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SelectableText('Iskenderun Technical University'),
+        SizedBox(
+          height: 2,
+        ),
+        Text('2018-2022'),
+        SizedBox(
+          height: 2,
+        ),
+        Text('3.2 / 4'),
+      ],
+    ),
+    leading: Image.asset("assets/logo/iste.png"),
+  ),
+)
+      ],
+            
+          
         ),
       ),
     );
