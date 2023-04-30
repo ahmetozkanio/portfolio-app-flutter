@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blur/blur.dart';
 
 import 'package:flutter/material.dart';
@@ -115,88 +116,74 @@ class ProjectsView extends GetView<ProjectsViewController> {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child: Blur(
+                  child:  Blur(
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(8),
                           bottomRight: Radius.circular(8)),
                       blur: 9,
                       blurColor: Theme.of(context).primaryColor,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8)),
-                        ),
-                        height: 38.0,
-                      )),
+                      child: SizedBox(height: 38.0,),
+                 
+                      ),
                 ),
                 Positioned(
                   top: 0,
                   left: 0,
                   child: Card(
-                    elevation: 24.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32.0),
-                    ),
-                    child: IconButton(
-                      hoverColor: Theme.of(context).secondaryHeaderColor,
-                      splashRadius: 20.0,
-                      onPressed: () => customLaunchUrl(
-                          controller.projects[index].github ?? ""),
-                      icon: SvgPicture.asset(
-                        width: 18.0,
-                        height: 18.0,
-                        "assets/svg/github.svg",
-                        color: Theme.of(context).iconTheme.color,
-                        semanticsLabel: 'github',
+                      elevation: 24.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32.0),
+                      ),
+                      color: Theme.of(context).secondaryHeaderColor.withAlpha(100),
+                      child: 
+                      IconButton(
+                        hoverColor: Theme.of(context).secondaryHeaderColor,
+                        splashRadius: 20.0,
+                        onPressed: () => customLaunchUrl(
+                            controller.projects[index].github ?? ""),
+                        icon: SvgPicture.asset(
+                          width: 18.0,
+                          height: 18.0,
+                          "assets/svg/github.svg",
+                          color: Theme.of(context).iconTheme.color,
+                          semanticsLabel: 'github',
+                        ),
                       ),
                     ),
                   ),
-                ),
+                
                 Positioned(
-                  left: 8,
-                  bottom: 8,
-                  right: 8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
+                  left: 8.0,
+                  bottom: 8.0,
+                  right: 36.0,
+                  child:
+                      AutoSizeText(
                         controller.projects[index].projectName.toString(),
-                        textAlign: TextAlign.center,
-                      ),
-                      Row(
-                        children: [
+                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                          maxLines: 1,
+                        )
+                ),
+                 Positioned(
+                    bottom: 8,
+                    right: 8,
+                    child:  Row(
+                    children: [
+                      if (controller.projects[index].tools != null)
+                        for (var i in controller.projects[index].tools!)
                           Image.asset(
                             width: 16.0,
                             height: 16.0,
-                            "assets/logo/flutter.png",
+                            "assets/logo/${i.id}.png",
                           ),
-                         
-                          Image.asset(
-                            width: 16.0,
-                            height: 16.0,
-                            "assets/logo/swift.png",
-                          ),
-                          Image.asset(
-                            width: 16.0,
-                            height: 16.0,
-                            "assets/logo/django.png",
-                          ),
-                          Image.asset(
-                            width: 16.0,
-                            height: 16.0,
-                            "assets/logo/figma.png",
-                          ),
-                        ],
-                      ),
                     ],
                   ),
+                
                 ),
               ],
             ),
           ),
         ),
+        
         // Card(
         //   color: Theme.of(context).secondaryHeaderColor,
         //   child: Container(
@@ -272,4 +259,4 @@ class _ProjectPopupCard extends StatelessWidget {
     );
   }
 }
-
+      
