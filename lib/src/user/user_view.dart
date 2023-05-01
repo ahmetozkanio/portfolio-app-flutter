@@ -147,11 +147,7 @@ class UserView extends GetView<UserViewController> {
               child: Obx(
                 () => Column(
                   children: [
-                    
-                        Text(controller.user.value.description.toString())
-                       
-                      
-                    
+                    Text(controller.user.value.description.toString())
                   ],
                 ),
               ),
@@ -207,8 +203,9 @@ class UserView extends GetView<UserViewController> {
       height: 145,
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/profile_photo.jpg"),
-            fit: BoxFit.fitWidth,),
+          image: AssetImage("assets/images/profile_photo.jpg"),
+          fit: BoxFit.fitWidth,
+        ),
         border: Border.all(
           width: 4.0,
           color: Theme.of(context).primaryColorLight,

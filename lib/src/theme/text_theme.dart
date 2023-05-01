@@ -9,7 +9,8 @@ TextTheme customTextTheme = TextTheme(
   displaySmall: GoogleFonts.poppins(fontSize: 48, fontWeight: FontWeight.w400),
   headlineLarge: GoogleFonts.poppins(
       fontSize: 34, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  headlineMedium: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
+  headlineMedium:
+      GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
   headlineSmall: GoogleFonts.poppins(
       fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
   titleLarge: GoogleFonts.poppins(

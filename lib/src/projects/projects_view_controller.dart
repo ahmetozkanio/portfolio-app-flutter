@@ -3,15 +3,12 @@ import 'model/project_model.dart';
 import 'service/projects_service.dart';
 
 class ProjectsViewController extends GetxController {
-
   RxList<Projects> projects = <Projects>[].obs;
 
-  // Animation Variables
-  RxBool isHoverProject = false.obs;
   @override
   void onInit() {
-    projectsFetchApi();
     super.onInit();
+    projectsFetchApi();
   }
 
   void projectsFetchApi() async {

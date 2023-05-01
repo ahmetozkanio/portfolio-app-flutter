@@ -25,25 +25,22 @@ class ProjectsView extends GetView<ProjectsViewController> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return 
-
-          Obx(() => GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 1.4,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 5,
-                          crossAxisCount: constraints.maxWidth > Constant().getMobileWidth() ? 3 : 2,
-                        ),
-                        itemCount: controller.projects.length,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext ctx, index) {
-                          return DelayedDisplay(
-                              delay: Duration(seconds: 1),
-                              child:projectCard(index, context)
-                            );
-                        }));
-        
+        return Obx(() => GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1.4,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+              crossAxisCount:
+                  constraints.maxWidth > Constant().getMobileWidth() ? 3 : 2,
+            ),
+            itemCount: controller.projects.length,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext ctx, index) {
+              return DelayedDisplay(
+                  delay: Duration(milliseconds: 500),
+                  child: projectCard(index, context));
+            }));
       },
     );
   }
@@ -82,37 +79,39 @@ class ProjectsView extends GetView<ProjectsViewController> {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child:  Blur(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8),
-                          bottomRight: Radius.circular(8)),
-                      blur: 9,
-                      blurColor: Get.isDarkMode ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColor ,
-                      child: SizedBox(height: 38.0,),
-                 
-                      ),
+                  child: Blur(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8)),
+                    blur: 9,
+                    blurColor: Get.isDarkMode
+                        ? Theme.of(context).primaryColorLight
+                        : Theme.of(context).primaryColor,
+                    child: SizedBox(
+                      height: 38.0,
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 0,
                   left: 0,
-                  child: githubButton(context, controller.projects[index].github),
-                  ),
-                
-                Positioned(
-                  left: 8.0,
-                  bottom: 8.0,
-                  right: 52.0,
                   child:
-                      AutoSizeText(
-                        controller.projects[index].projectName.toString(),
-                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
-                          maxLines: 1,
-                        )
+                      githubButton(context, controller.projects[index].github),
                 ),
-                 Positioned(
-                    bottom: 8,
-                    right: 8,
-                    child:  Row(
+                Positioned(
+                    left: 8.0,
+                    bottom: 8.0,
+                    right: 52.0,
+                    child: AutoSizeText(
+                      controller.projects[index].projectName.toString(),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                      maxLines: 1,
+                    )),
+                Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: Row(
                     children: [
                       if (controller.projects[index].tools != null)
                         for (var i in controller.projects[index].tools!)
@@ -123,13 +122,12 @@ class ProjectsView extends GetView<ProjectsViewController> {
                           ),
                     ],
                   ),
-                
                 ),
               ],
             ),
           ),
         ),
-        
+
         // Card(
         //   color: Theme.of(context).secondaryHeaderColor,
         //   child: Container(

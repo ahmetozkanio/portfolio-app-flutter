@@ -61,7 +61,7 @@ dependencies:
   # flutter_colorpicker: ^1.0.3
 
   # pdf: ^3.8.4
-  # syncfusion_flutter_pdfviewer: ^20.3.52
+  syncfusion_flutter_pdfviewer: ^20.3.52
   # flutter_html: ^3.0.0-alpha.6
   blur: ^3.1.0
   animations: ^2.0.7

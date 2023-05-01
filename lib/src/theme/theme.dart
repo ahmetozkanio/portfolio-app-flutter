@@ -37,6 +37,7 @@ class ThemesController extends GetxController with ThemeCacheManager {
     // radioThemeValue();
     initialTheme();
   }
+
   static initialTheme() {
     var themeData = ThemesController.getStorageInitTheme();
     if (themeData != null) {
@@ -44,10 +45,10 @@ class ThemesController extends GetxController with ThemeCacheManager {
       Get.changeThemeMode(ThemeMode.dark);
       return themeData;
     } else {
-    Get.changeThemeMode(ThemeMode.light);
-     
+      Get.changeThemeMode(ThemeMode.light);
     }
   }
+
   static ThemeData? getStorageInitTheme() {
     var init = ThemeCacheManager.getTheme();
     var darkTheme = ThemeCacheManager.getDarkTheme();

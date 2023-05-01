@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:web_site_ahmetozkanio/src/certificates/certificate_view.dart';
@@ -25,23 +26,27 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
         //     255, 66, 66, 66), // tab button ripple color when pressed
         // hoverColor:
         //     Color.fromARGB(255, 97, 97, 97), // tab button hover color
-        style: GnavStyle.oldSchool,
+        style: GnavStyle.google,
         haptic: true, // haptic feedback
         tabBorderRadius: 8,
         tabActiveBorder: Border.all(
-            color: Theme.of(context).primaryColor,
+            color: Get.isDarkMode ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColorDark,
             width: 1), // tab button border
         // tabBorder: Border.all(
         //     color: Colors.grey, width: 1), // tab button border
         // tabShadow: [
         //   BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 8)
         // ], // tab button shadow
-        curve: Curves.easeInOutQuad, // tab animation curves
+        curve: Curves.decelerate, // tab animation curves
         duration: Duration(milliseconds: 300), // tab animation duration
-        gap: 8, // the tab button gap between icon and text
+        gap: 3, // the tab button gap between icon and text
          // unselected icon color
+         
         activeColor:
-            Theme.of(context).primaryColor  , // selected icon and text color
+            Get.isDarkMode
+            ? Theme.of(context).primaryColorLight
+            : Theme.of(context)
+                .primaryColorDark  , // selected icon and text color
         iconSize: 24, // tab button icon size
         // tabBackgroundColor: Colors.purple
         //     .withOpacity(0.1), // selected tab background color
@@ -58,7 +63,11 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
             icon: Icons.school_outlined,
             text: 'education',
           ),
-          
+          // GButton(
+          //   haptic: true,
+          //   icon: Icons.person_2_outlined,
+          //   text: 'resume',
+          // ),
         ]),
   );
 }
