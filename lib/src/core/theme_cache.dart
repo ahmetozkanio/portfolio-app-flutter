@@ -11,7 +11,7 @@ mixin ThemeCacheManager {
     return true;
   }
 
-  Future<bool> saveDarkTheme(EnumThemeData? themeData) async {
+  static Future<bool> saveDarkTheme(EnumThemeData? themeData) async {
     await themeBox.write("themeDark", themeData.toString());
     return true;
   }
@@ -27,7 +27,7 @@ mixin ThemeCacheManager {
     return themeData;
   }
 
-  Future<void> removeDarkTheme() async {
+  static Future<void> removeDarkTheme() async {
     await themeBox.remove("themeDark".toString());
   }
 }

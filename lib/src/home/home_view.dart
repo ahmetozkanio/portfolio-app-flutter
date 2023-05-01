@@ -3,9 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:web_site_ahmetozkanio/src/core/theme_cache.dart';
 import 'package:web_site_ahmetozkanio/src/home/home_view_controller.dart';
 import 'package:web_site_ahmetozkanio/src/home/nav_bar/nav_bar_view.dart';
 import 'package:web_site_ahmetozkanio/src/theme/panachefile/dark_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/green_theme.dart';
+import 'package:web_site_ahmetozkanio/src/theme/panachefile/grey_theme.dart';
 import 'package:web_site_ahmetozkanio/src/theme/theme.dart';
 import 'package:web_site_ahmetozkanio/src/utils/custom_rect_tween.dart';
 
@@ -20,7 +23,6 @@ class HomeView extends GetView<HomeViewController> {
 
   @override
   Widget build(BuildContext context) {
-    ThemesController themesController = ThemesController();
 
     return Scaffold(
       body: DelayedDisplay(
@@ -45,8 +47,8 @@ class HomeView extends GetView<HomeViewController> {
                         Obx(() => IconButton(
                           splashRadius: 22.0,
                               onPressed: () {
-                                if (controller.icon == Icons.dark_mode_outlined) {
-                                  themesController.saveDarkTheme(
+                                if (!Get.isDarkMode) {
+                                  ThemeCacheManager.saveDarkTheme(
                                     EnumThemeData.darkTheme,
                                   );
                                   print("Dark Mode");
@@ -55,8 +57,9 @@ class HomeView extends GetView<HomeViewController> {
                                   controller.icon.value = Icons.wb_sunny_outlined;
                                 } else {
                                   print("Light Mode");
-                                  themesController.removeDarkTheme();
-                                  themesController.initialTheme();
+                                  ThemeCacheManager.removeDarkTheme();
+                                  
+                                  ThemesController.initialTheme();
                                   controller.icon.value = Icons.dark_mode_outlined;
                                 }
                               },
@@ -65,11 +68,8 @@ class HomeView extends GetView<HomeViewController> {
                               ),
                             ),
                             ),
-                         
                       ],
                     ),
-                       
-                  
                   ],
                 ),
               ),
