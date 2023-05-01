@@ -84,7 +84,7 @@ class UserView extends GetView<UserViewController> {
   Card userDescription() {
     return Card(
       child: Container(
-        width: 600.0,
+        width: Constant().getMobileWidth(),
         child: Stack(
           children: [
             Positioned(

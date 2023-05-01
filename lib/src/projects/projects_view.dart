@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blur/blur.dart';
+import 'package:delayed_display/delayed_display.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:web_site_ahmetozkanio/src/projects/detail/project_detail_view.dart';
-// import 'package:sticky_headers/sticky_headers.dart';
 import 'package:web_site_ahmetozkanio/src/projects/model/project_model.dart';
 
 import 'package:web_site_ahmetozkanio/src/projects/projects_view_controller.dart';
@@ -14,53 +14,13 @@ import 'package:web_site_ahmetozkanio/src/projects/service/projects_service.dart
 import 'package:web_site_ahmetozkanio/src/utils/hero_dialog_route.dart';
 import 'package:web_site_ahmetozkanio/src/utils/launch_url.dart';
 
+import '../constants/constant.dart';
 import '../utils/custom_rect_tween.dart';
+import 'widgets/github_button_widget.dart';
 
 class ProjectsView extends GetView<ProjectsViewController> {
   ProjectsView({Key? key}) : super(key: key);
-  // List<String> listHeader = [
-  //   'HEADER1',
-  //   'HEADER2',
-  //   'HEADER3',
-  // ];
-  // ListView.builder(
-  //           itemCount: listHeader.length,
-  //           itemBuilder: (context, headerIndex) {
-  //             return StickyHeader(
-  //               header: Container(
-  //                 height: 38.0,
-  //                 color: Colors.white,
-  //                 padding: EdgeInsets.symmetric(horizontal: 12.0),
-  //                 alignment: Alignment.centerLeft,
-  //                 child: Text(
-  //                   listHeader[headerIndex],
-  //                   style: const TextStyle(
-  //                       color: Colors.purple,
-  //                       fontSize: 20,
-  //                       fontWeight: FontWeight.bold),
-  //                 ),
-  //               ),
-  //               content: Container(
-  //                 child:Obx(() =>  GridView.builder(
-  //                   shrinkWrap: true,
-  //                   physics: NeverScrollableScrollPhysics(),
-  //                   itemCount: controller.projects.length,
-  //                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //                     childAspectRatio: 1.4,
-  //                     crossAxisSpacing: 5,
-  //             mainAxisSpacing: 5,
-  //             crossAxisCount: constraints.maxWidth > 600 ? 3 : 2,
-  //           ),
-  //           itemBuilder: (context, index) {
-  //             return projectCard(index, context);
-  //           },
-  //         ),
-  //       ),)
-  //     );
-  //   },
-  //   shrinkWrap: true,
 
-  // );
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -72,13 +32,16 @@ class ProjectsView extends GetView<ProjectsViewController> {
                           childAspectRatio: 1.4,
                           crossAxisSpacing: 5,
                           mainAxisSpacing: 5,
-                          crossAxisCount: constraints.maxWidth > 600 ? 3 : 2,
+                          crossAxisCount: constraints.maxWidth > Constant().getMobileWidth() ? 3 : 2,
                         ),
                         itemCount: controller.projects.length,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (BuildContext ctx, index) {
-                          return projectCard(index, context);
+                          return DelayedDisplay(
+                              delay: Duration(seconds: 1),
+                              child:projectCard(index, context)
+                            );
                         }));
         
       },
@@ -132,27 +95,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
                 Positioned(
                   top: 0,
                   left: 0,
-                  child: Card(
-                      elevation: 24.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      color: Theme.of(context).secondaryHeaderColor.withAlpha(100),
-                      child: 
-                      IconButton(
-                        hoverColor: Theme.of(context).secondaryHeaderColor,
-                        splashRadius: 20.0,
-                        onPressed: () => customLaunchUrl(
-                            controller.projects[index].github ?? ""),
-                        icon: SvgPicture.asset(
-                          width: 18.0,
-                          height: 18.0,
-                          "assets/svg/github.svg",
-                          color: Theme.of(context).iconTheme.color,
-                          semanticsLabel: 'github',
-                        ),
-                      ),
-                    ),
+                  child: githubButton(context, controller.projects[index].github),
                   ),
                 
                 Positioned(
@@ -204,7 +147,4 @@ class ProjectsView extends GetView<ProjectsViewController> {
       ),
     );
   }
-
-
 }
-
