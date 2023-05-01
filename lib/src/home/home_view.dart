@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeViewController> {
     return Scaffold(
       body: DelayedDisplay(
         slidingCurve: Curves.easeOutCirc,
-        delay: Duration(seconds: 1),
+        delay: Duration(milliseconds: 300),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +39,7 @@ class HomeView extends GetView<HomeViewController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DelayedDisplay(
-                      delay: Duration(seconds: 1),
+                      delay: Duration(milliseconds:300),
                       child: InkWell(onTap: () {customLaunchUrl("mailto:ahmetozkanio@yahoo.com");}, child: Text("ahmetozkanio",style: TextStyle(fontWeight: FontWeight.w500),)),
                     ),
                     Row(
@@ -84,7 +84,7 @@ class HomeView extends GetView<HomeViewController> {
                 width: 800,
                 child: DelayedDisplay(
                   slidingCurve: Curves.easeOutCirc,
-                  delay: Duration(milliseconds: 1500),
+                  delay: Duration(milliseconds: 400),
                   child: UserView(),
                 ),
               ),

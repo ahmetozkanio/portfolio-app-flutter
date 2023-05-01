@@ -65,6 +65,8 @@ dependencies:
   # flutter_html: ^3.0.0-alpha.6
   blur: ^3.1.0
   animations: ^2.0.7
+
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -80,6 +82,17 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+flutter_native_splash:
+  image: assets/splash/ahmetozkanio_light.png
+  color: "ffffff"
+  image_dark: assets/splash/ahmetozkanio_dark.png
+  color_dark: "000000" 
+  web: true
+  android: true
+  ios: true
+  fullscreen: true 
+
+
 flutter:
 
   # The following line ensures that the Material Icons font is
