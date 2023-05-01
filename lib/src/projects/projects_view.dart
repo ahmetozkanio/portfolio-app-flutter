@@ -104,6 +104,7 @@ class ProjectsView extends GetView<ProjectsViewController> {
                     right: 52.0,
                     child: AutoSizeText(
                       controller.projects[index].projectName.toString(),
+                      minFontSize: 8,
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                       maxLines: 1,
