@@ -4,13 +4,14 @@ import 'package:get/instance_manager.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:web_site_ahmetozkanio/src/certificates/certificate_view.dart';
 import 'package:web_site_ahmetozkanio/src/cv/cv_view.dart';
+import 'package:web_site_ahmetozkanio/src/experience/experience_view.dart';
 
 import '../../education/education_view.dart';
 import '../../projects/projects_view.dart';
 import '../home_view_controller.dart';
 
 List<Widget> homeNavBarPageViewItems() {
-  return [ProjectsView(),EducationView()];
+  return [ProjectsView(),EducationView(),ExperienceView()];
 }
 
 Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
@@ -62,6 +63,11 @@ Widget homeNavBar(HomeViewController homeViewController, BuildContext context) {
             haptic: true,
             icon: Icons.school_outlined,
             text: 'education',
+          ),
+        GButton(
+            haptic: true,
+            icon: Icons.business_center_outlined,
+            text: 'experience',
           ),
           // GButton(
           //   haptic: true,
