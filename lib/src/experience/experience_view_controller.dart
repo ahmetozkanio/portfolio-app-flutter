@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:web_site_ahmetozkanio/src/education/education_model.dart';
-import 'package:web_site_ahmetozkanio/src/education/education_service.dart';
 import 'package:web_site_ahmetozkanio/src/experience/experience_model.dart';
 import 'package:web_site_ahmetozkanio/src/experience/experience_service.dart';
 
