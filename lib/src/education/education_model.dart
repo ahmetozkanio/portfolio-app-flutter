@@ -6,7 +6,7 @@ class Education {
   String? endDate;
   String? location;
   String? graduate;
-  String? image;
+  String? logo;
 
   Education(
       {this.university,
@@ -15,7 +15,7 @@ class Education {
       this.endDate,
       this.location,
       this.graduate,
-      this.image});
+      this.logo});
 
   Education.fromJson(Map<String, dynamic> json) {
     university = json['university'];
@@ -24,7 +24,7 @@ class Education {
     endDate = json['endDate'];
     location = json['location'];
     graduate = json['graduate'];
-    graduate = json['image'];
+    logo = json['logo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,7 +35,7 @@ class Education {
     data['endDate'] = this.endDate;
     data['location'] = this.location;
     data['graduate'] = this.graduate;
-    data['image'] = this.image;
+    data['logo'] = this.logo;
     return data;
   }
 }

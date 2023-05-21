@@ -4,7 +4,9 @@ class Experience {
   String? startDate;
   String? endDate;
   String? location;
+  String? employmentType;
   String? locationType;
+  String? logo;
 
   Experience(
       {this.company,
@@ -12,7 +14,9 @@ class Experience {
       this.startDate,
       this.endDate,
       this.location,
-      this.locationType});
+      this.locationType,
+      this.logo,
+      this.employmentType});
 
   Experience.fromJson(Map<String, dynamic> json) {
     company = json['company'];
@@ -21,6 +25,8 @@ class Experience {
     endDate = json['endDate'];
     location = json['location'];
     locationType = json['locationType'];
+    logo = json['logo'];
+    employmentType = json['employmentType'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +37,8 @@ class Experience {
     data['endDate'] = this.endDate;
     data['location'] = this.location;
     data['locationType'] = this.locationType;
+    data['logo'] = this.logo;
+    data['employmentType'] = this.employmentType;
     return data;
   }
 }
