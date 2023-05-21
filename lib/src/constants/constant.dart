@@ -11,10 +11,14 @@ class Constant {
 
   final String _project = "/projects.json";
   final String _user = "/user.json";
+  final String _education = "/education.json";
+  final String _experience = "/experience.json";
 
   String getBaseUrl() => _base;
 
   String getUserUrl() => _base + _user;
   String getProjectUrl() => _base + _project;
   String getCertificateUrl() => _base + _project;
+  String getEducationUrl() => _base + _education;
+  String getExperienceUrl() => _base + _experience;
 }
