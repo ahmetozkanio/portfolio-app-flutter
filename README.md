@@ -25,6 +25,6 @@ https://github.com/ahmetozkanio/custom-api-public/tree/main/my-site
 </p>
 
 <p align='center'>
-    <img src="screenshots/ss5png" width="32.2%"/>
+    <img src="screenshots/ss5.png" width="32.2%"/>
     <img src="screenshots/ss6.png" width="32.2%"/>
 </p>
