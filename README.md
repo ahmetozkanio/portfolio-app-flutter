@@ -17,14 +17,12 @@ https://github.com/ahmetozkanio/custom-api-public/tree/main/my-site
 ### Screenshots
 
 <p align='center'>
-    <img src="screenshots/ss1.png" width="32.2%"/>
-    <img src="screenshots/ss11.png" width="32.2%"/>
-    <img src="screenshots/ss2.png" width="32.2%"/>
-    <img src="screenshots/ss3.png" width="32.2%"/>
-    <img src="screenshots/ss4.png" width="32.2%"/>
-</p>
-
-<p align='center'>
-    <img src="screenshots/ss5.png" width="32.2%"/>
-    <img src="screenshots/ss6.png" width="32.2%"/>
+    <img src="screenshots/ss1.png"/>
+    <img src="screenshots/ss11.png"/>
+    <img src="screenshots/ss2.png"/>
+    <img src="screenshots/ss3.png"/>
+    <img src="screenshots/ss4.png"/>
+    <img src="screenshots/ss5.png"/>
+    <img src="screenshots/ss6.png"/>
+    
 </p>
