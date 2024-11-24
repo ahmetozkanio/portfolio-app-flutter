@@ -30,8 +30,7 @@ final class ProjectCard extends StatelessWidget {
               _buildOverlay(context),
               _buildProjectName(context),
               _buildGithubButton(context),
-              _buildAppStoreButton(context),
-              _buildPlayStoreButton(context),
+              _buildStoreButtons(context),
             ],
           ),
         ));
@@ -91,34 +90,34 @@ final class ProjectCard extends StatelessWidget {
         ));
   }
 
-  Widget _buildAppStoreButton(BuildContext context) {
+  Widget _buildStoreButtons(BuildContext context) {
     return Positioned(
       top: 10,
       left: 10,
-      child: Visibility(
-        visible: project.appStore != null && project.appStore!.isNotEmpty,
-        child: AccountIconButton(
-          account: "appstore",
-          url: project.appStore ?? "",
-          iconData: FontAwesomeIcons.appStore,
-          isFilled: true,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlayStoreButton(BuildContext context) {
-    return Positioned(
-      top: 50,
-      left: 0,
-      child: Visibility(
-        visible: project.playStore != null && project.playStore!.isNotEmpty,
-        child: AccountIconButton(
-          account: "playstore",
-          url: project.playStore ?? "",
-          iconData: FontAwesomeIcons.googlePlay,
-          isFilled: true,
-        ),
+      child: Column(
+        children: [
+          Visibility(
+            visible: project.appStore != null && project.appStore!.isNotEmpty,
+            child: AccountIconButton(
+              account: "App Store",
+              url: project.appStore ?? "",
+              iconData: FontAwesomeIcons.appStore,
+              isFilled: true,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Visibility(
+            visible: project.playStore != null && project.playStore!.isNotEmpty,
+            child: AccountIconButton(
+              account: "Play Store",
+              url: project.playStore ?? "",
+              iconData: FontAwesomeIcons.googlePlay,
+              isFilled: true,
+            ),
+          ),
+        ],
       ),
     );
   }

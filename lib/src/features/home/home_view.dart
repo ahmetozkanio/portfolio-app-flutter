@@ -1,5 +1,6 @@
 import 'package:ahmetozkanio/src/features/home/home_view_controller.dart';
 import 'package:ahmetozkanio/src/features/nav_bar/nav_bar_view.dart';
+import 'package:ahmetozkanio/src/features/user/user_view_controller.dart';
 import 'package:ahmetozkanio/src/utils/theme/theme_controller.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ final class HomeView extends GetView<HomeViewController> {
   HomeView({Key? key}) : super(key: key);
 
   final ThemeController _themeController = Get.find();
+  final UserViewController _userViewController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,13 @@ final class HomeView extends GetView<HomeViewController> {
                       delay: Duration(milliseconds: 300),
                       child: InkWell(
                           onTap: () {
-                            customLaunchUrl("mailto:ahmetozkanio@yahoo.com");
+                            customLaunchUrl(
+                                "mailto:${_userViewController.user.value.mail ?? ""}");
                           },
-                          child: Text(
-                            "ahmetozkanio@yahoo.com",
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          )),
+                          child: Obx(() => Text(
+                                _userViewController.user.value.mail ?? "",
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ))),
                     ),
                     Row(
                       children: [

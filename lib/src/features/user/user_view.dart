@@ -1,7 +1,7 @@
+import 'package:ahmetozkanio/src/models/user.dart';
 import 'package:ahmetozkanio/src/utils/constants/constant.dart';
 import 'package:ahmetozkanio/src/utils/widgets/account_icon_button.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'user_view_controller.dart';
 
@@ -90,10 +90,8 @@ class UserView extends GetView<UserViewController> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           border: Border.all(
-            color: Theme.of(context)
-                .colorScheme
-                .surfaceContainerLow, // Kenarlık rengi
-            width: 1, // Kenarlık kalınlığı
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
+            width: 1,
           ),
           // color: colorScheme
           //     .surfaceContainerLow, // Set the background color from the theme
@@ -172,42 +170,12 @@ class UserView extends GetView<UserViewController> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AccountIconButton(
-            account: "linkedin",
-            url:
-                "https://www.linkedin.com/in/${controller.user.value.username}",
-            iconData: FontAwesomeIcons.linkedin,
-          ),
-          AccountIconButton(
-            account: "appstore",
-            url: "https://apps.apple.com/us/developer/ahmet-ozkan/id1772304555",
-            iconData: FontAwesomeIcons.appStoreIos,
-          ),
-          AccountIconButton(
-            account: "instagram",
-            url: "https://www.instagram.com/${controller.user.value.username}",
-            iconData: FontAwesomeIcons.googlePlay,
-          ),
-          AccountIconButton(
-            account: "github",
-            url: "https://www.github.com/${controller.user.value.username}",
-            iconData: FontAwesomeIcons.github,
-          ),
-          AccountIconButton(
-            account: "medium",
-            url: "https://www.medium.com/@${controller.user.value.username}",
-            iconData: FontAwesomeIcons.medium,
-          ),
-          AccountIconButton(
-            account: "x",
-            url: "https://www.x.com/@${controller.user.value.username}",
-            iconData: FontAwesomeIcons.xTwitter,
-          ),
-          AccountIconButton(
-            account: "instagram",
-            url: "https://www.instagram.com/${controller.user.value.username}",
-            iconData: FontAwesomeIcons.instagram,
-          ),
+          for (SocialAccount i in controller.user.value.socialAccounts ?? [])
+            AccountIconButton(
+              account: i.account,
+              url: i.url,
+              iconData: i.iconData,
+            ),
         ],
       ),
     );
@@ -225,25 +193,25 @@ class UserView extends GetView<UserViewController> {
 
   Widget userImage(BuildContext context) {
     return ClipOval(
-      child: Image.network(
-        "https://avatars.githubusercontent.com/u/65506828?s=400&u=ffc481d60828d5c04a6659a169cb68b70d259def&v=4",
-        width: 100,
-        height: 100,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => Icon(
-          Icons.person,
-          size: 100,
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-        ),
-      ),
+      child: Obx(() => Image.network(
+            controller.user.value.profilePhoto ?? "",
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) => Icon(
+              Icons.person,
+              size: 100,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+            ),
+          )),
     );
   }
 
   Widget userName() {
     return Obx(
       () {
-        final firstName = controller.user.value.firstName ?? 'First Name';
-        final lastName = controller.user.value.lastName ?? 'Last Name';
+        final firstName = controller.user.value.firstName ?? '';
+        final lastName = controller.user.value.lastName ?? '';
         return Text(
           '$firstName $lastName',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
