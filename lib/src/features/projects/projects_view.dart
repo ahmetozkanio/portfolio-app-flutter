@@ -9,6 +9,9 @@ final class ProjectView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProjectsViewController controller = Get.find<ProjectsViewController>();
-    return ProjectGridView(projects: controller.projects);
+    return Obx(() => Visibility(
+          visible: controller.projects.isNotEmpty,
+          child: ProjectGridView(projects: controller.projects),
+        ));
   }
 }
