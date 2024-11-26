@@ -10,7 +10,7 @@ final class IndieProjectView extends StatelessWidget {
   Widget build(BuildContext context) {
     ProjectsViewController controller = Get.find<ProjectsViewController>();
     return Obx(() => Visibility(
-          visible: controller.projects.isNotEmpty,
+          visible: controller.indieProjects.isNotEmpty,
           child: ProjectGridView(projects: controller.indieProjects),
         ));
   }

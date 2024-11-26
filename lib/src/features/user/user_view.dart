@@ -164,21 +164,25 @@ class UserView extends GetView<UserViewController> {
   }
 
   Widget userAccounts(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          for (SocialAccount i in controller.user.value.socialAccounts ?? [])
-            AccountIconButton(
-              account: i.account,
-              url: i.url,
-              iconData: i.iconData,
-            ),
-        ],
-      ),
-    );
+    return Obx(() => Visibility(
+        visible: controller.user.value.socialAccounts != null &&
+            controller.user.value.socialAccounts!.isNotEmpty,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (SocialAccount i
+                  in controller.user.value.socialAccounts ?? [])
+                AccountIconButton(
+                  account: i.account,
+                  url: i.url,
+                  iconData: i.iconData,
+                )
+            ],
+          ),
+        )));
   }
 
   Widget userTitle() {
